@@ -3,8 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import routes from './configs/routes'
 import { Reset } from 'styled-reset'
 import Modal from 'react-modal'
+import { connect } from 'react-redux'
 Modal.setAppElement('#root')
-function App () {
+function App ({ message, state }) {
+  console.log(state)
   return (
     <>
       <Reset />
@@ -21,4 +23,13 @@ function App () {
     </>
   )
 }
-export default App
+// export default Apps
+
+const mapStateToProps = state => ({
+  message: 'Hello Doge',
+  state
+})
+
+const AppWithConnect = connect(mapStateToProps)(App)
+
+export default AppWithConnect

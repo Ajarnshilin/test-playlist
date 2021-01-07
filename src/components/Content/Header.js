@@ -5,6 +5,7 @@ import Cherry from '../../assets/cherry.jpeg'
 import Brick from '../../assets/brick.jpeg'
 import Leaf from '../../assets/leaf.jpeg'
 import Scale from '../../assets/scale.jpeg'
+import { connect } from 'react-redux'
 
 const bg = {
   backgroundImage: `url(${Brick})`,
@@ -39,7 +40,7 @@ const Pic = styled.div`
   }
 `;
 
-function Header() {
+function Header({message}) {
   const { doge } = React.useContext(ListContextV2)
   const { idSong, setIdSong, dogwow, setDogwow ,name} = doge
   const nameless =`${name[0]}.spilt('')`
@@ -51,9 +52,17 @@ function Header() {
             </Pic>
             <RightHeader>
                 <h1>{name[0]}</h1>
+                <h1>Read here : {message}</h1>
                 <span>CREART BY {name[0]} {idSong.length} {idSong.length >=  2 ? "songs" : "song" }, {dogwow} sec</span>
             </RightHeader>
         </Head>
     );
 }
-export default Header;
+const mapStateToProps = state => ({
+  message: 'Hello Doge'
+})
+
+const AppWithConnect = connect(mapStateToProps)(Header)
+
+export default AppWithConnect
+// export default Header;
