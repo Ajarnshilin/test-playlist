@@ -2,15 +2,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { ListProvider } from './context/ListContextV2'
-import { Provider, provider } from 'react-redux'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import rootReducer from './reducers'
 
-ReactDOM.render(
+const store = createStore(rootReducer)
+const MyApp = () => (
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
       <ListProvider>
         <App />
       </ListProvider>
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 )
+ReactDOM.render(<MyApp />,document.getElementById('root'))
