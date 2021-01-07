@@ -1,4 +1,4 @@
-export default function storePlaylists(state = [], action) {
+export function storePlaylists(state = [], action) {
     switch (action.type) {
       case 'ADDPLAYLIST':
         return [...state, { name: action.name, song : action.song }]
